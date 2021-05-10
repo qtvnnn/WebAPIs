@@ -1,0 +1,17 @@
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Entities.deps.json
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Entities.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\ref\MISA.Entities.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Entities.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.AssemblyInfo.cs
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\ref\MISA.Entities.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Core.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Infrastructure.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Core.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\net5.0\MISA.Infrastructure.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.csprojAssemblyReference.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\net5.0\MISA.Entities.csproj.CopyComplete

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.CukCuk.WebAPIs.Entities
+namespace MISA.Core.Entities
 {
     public class CustomerGroup : BaseEntity
     {

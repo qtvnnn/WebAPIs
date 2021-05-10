@@ -7,6 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MISA.Core.Interfaces;
+using MISA.Core.Interfaces.Repository;
+using MISA.Core.Interfaces.Service;
+using MISA.Core.Interfaces.Service.Respository;
+using MISA.Core.Services;
+using MISA.Infrastructure;
+using MISA.Infrastructure.Respository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +39,11 @@ namespace MISA.CukCuk.WebAPIs
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.CukCuk.WebAPIs", Version = "v1" });
             });
+
+            services.AddScoped<ICustomerGroupRepository, CustomerGroupRepository>();
+            services.AddScoped<ICustomerGroupService, CustomerGroupService>();
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseReposiotry<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,3 +10,15 @@ C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Core\obj\Debug\net5.0\MISA
 C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.dll
 C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Core\obj\Debug\net5.0\ref\MISA.Core.dll
 C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfo.cs
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\ref\MISA.Core.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\bin\Debug\net5.0\MISA.Core.deps.json
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\bin\Debug\net5.0\MISA.Core.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\bin\Debug\net5.0\ref\MISA.Core.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\bin\Debug\net5.0\MISA.Core.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Core\obj\Debug\net5.0\MISA.Core.csprojAssemblyReference.cache

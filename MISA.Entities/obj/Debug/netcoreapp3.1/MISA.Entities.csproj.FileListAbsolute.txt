@@ -1,0 +1,9 @@
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\netcoreapp3.1\MISA.Entities.deps.json
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\netcoreapp3.1\MISA.Entities.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\bin\Debug\netcoreapp3.1\MISA.Entities.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\netcoreapp3.1\MISA.Entities.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\netcoreapp3.1\MISA.Entities.AssemblyInfo.cs
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\netcoreapp3.1\MISA.Entities.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\netcoreapp3.1\MISA.Entities.dll
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\netcoreapp3.1\MISA.Entities.pdb
+C:\Users\DELL\Desktop\APIs\WebAPIs\MISA.Entities\obj\Debug\netcoreapp3.1\MISA.Entities.csprojAssemblyReference.cache
