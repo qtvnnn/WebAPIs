@@ -1,0 +1,15 @@
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\bin\Debug\net5.0\MISA.Core.dll
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.csprojAssemblyReference.cache
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.AssemblyInfo.cs
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\bin\Debug\net5.0\MISA.Infrastructure.deps.json
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\bin\Debug\net5.0\MISA.Infrastructure.dll
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\bin\Debug\net5.0\ref\MISA.Infrastructure.dll
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\bin\Debug\net5.0\MISA.Infrastructure.pdb
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\bin\Debug\net5.0\MISA.Core.pdb
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.csproj.CopyComplete
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.dll
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\ref\MISA.Infrastructure.dll
+C:\Users\nnnang\source\repos\MISA.CukCuk.WebAPIs\MISA.Infrastructure\obj\Debug\net5.0\MISA.Infrastructure.pdb
