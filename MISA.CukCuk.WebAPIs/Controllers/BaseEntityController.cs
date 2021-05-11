@@ -12,7 +12,7 @@ namespace MISA.CukCuk.WebAPIs.Controllers
 {
     [Route("api/v1/[controller]s")]
     [ApiController]
-    public class BaseEntityController<T> : ControllerBase
+    public abstract class BaseEntityController<T> : ControllerBase
     {
         IBaseService<T> _baseService;
         public BaseEntityController(IBaseService<T> baseService)
@@ -45,9 +45,10 @@ namespace MISA.CukCuk.WebAPIs.Controllers
 
         // PUT api/<CustomerGroup>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
+        public IActionResult Put(T entity, Guid id)
         {
-            return Ok(1);
+            var row = _baseService.Update(entity);
+            return Ok(row);
         }
 
         // DELETE api/<CustomerGroup>/5

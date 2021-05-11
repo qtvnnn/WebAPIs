@@ -18,10 +18,10 @@ namespace MISA.CukCuk.WebAPIs.Controllers
 {
     public class CustomerGroupController : BaseEntityController<CustomerGroup>
     {
-        IBaseService<CustomerGroup> _baseService;
-        public CustomerGroupController(IBaseService<CustomerGroup> baseService) : base(baseService)
+        ICustomerGroupService _CustomerGroupService;
+        public CustomerGroupController(ICustomerGroupService CustomerGroupService) : base(CustomerGroupService)
         {
-            _baseService = baseService;
+            _CustomerGroupService = CustomerGroupService;
         }
     }
 }

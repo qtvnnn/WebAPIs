@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace MISA.Core.Interfaces.Service
     {
         IEnumerable<T> Get();
         T GetById(Guid entityId);
-        int Insert(T entity);
-        int Update(T entity);
-        int Delete(Guid entityId);
+        ServiceResult Insert(T entity);
+        ServiceResult Update(T entity);
+        ServiceResult Delete(Guid entityId);
     }
 }

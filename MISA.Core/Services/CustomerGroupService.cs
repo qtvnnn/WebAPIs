@@ -17,11 +17,30 @@ namespace MISA.Core.Services
 {
     public class CustomerGroupService : BaseService<CustomerGroup>, ICustomerGroupService
     {
-        IBaseRepository<CustomerGroup> _customerGroupRepository;
-        public CustomerGroupService(IBaseRepository<CustomerGroup> customerGroupRepository) : base(customerGroupRepository)
+        ICustomerGroupRepository _customerGroupRepository;
+        public CustomerGroupService(ICustomerGroupRepository customerGroupRepository) : base(customerGroupRepository)
         {
             _customerGroupRepository = customerGroupRepository;
         }
+
+        //public override int Insert(CustomerGroup custpmerGroup)
+        //{
+        //    var isValid = true;
+        //    var customerGroupDuplicate = _customerGroupRepository.GetCustomerGroupByName(custpmerGroup.CustomerGroupName);
+        //    if (customerGroupDuplicate != null)
+        //    {
+        //        isValid = false;
+        //    }
+        //    if (isValid == true)
+        //    {
+        //        var res = base.Insert(custpmerGroup);
+        //        return res;
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
+        //}
 
         //public ServiceResult Delete(Guid id)
         //{

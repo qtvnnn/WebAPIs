@@ -1,23 +1,28 @@
-﻿using MISA.Core.Interfaces.Repository;
+﻿using MISA.Core.Entities;
+using MISA.Core.Interfaces.Repository;
 using MISA.Core.Interfaces.Service;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class BaseService<T> : IBaseService<T>
+    public class BaseService<T> : IBaseService<T> where T : BaseEntity
     {
         IBaseRepository<T> _baseRepository;
+        ServiceResult _serviceResult;
         public BaseService(IBaseRepository<T> baseRepository)
         {
             _baseRepository = baseRepository;
+            _serviceResult = new ServiceResult() { MISAcode = Enum.MISACode.Success };
         }
-        public int Delete(Guid entityId)
+        public ServiceResult Delete(Guid entityId)
         {
-            return _baseRepository.Delete(entityId);
+            _serviceResult.Data = _baseRepository.Delete(entityId);
+            return _serviceResult;
         }
 
         public IEnumerable<T> Get()
@@ -30,14 +35,78 @@ namespace MISA.Core.Services
             return _baseRepository.GetById(entityId);
         }
 
-        public int Insert(T entity)
+        public virtual ServiceResult Insert(T entity)
         {
-            return _baseRepository.Insert(entity);
+            entity.EntityState = Enum.EntityState.Update;
+            //Thực hiện validate
+            var isValidate = Validate(entity);
+            if (isValidate == true)
+            {
+                _serviceResult.Data = _baseRepository.Insert(entity);
+                _serviceResult.MISAcode = Enum.MISACode.IsValid;
+                return _serviceResult;
+            }
+            else
+            {
+                return _serviceResult;
+            }
         }
 
-        public int Update(T entity)
+        public ServiceResult Update(T entity)
         {
-            return _baseRepository.Update(entity);
+            entity.EntityState = Enum.EntityState.Update;
+            var isValidate = Validate(entity);
+            if (isValidate == true)
+            {
+                _serviceResult.Data = _baseRepository.Insert(entity);
+                _serviceResult.MISAcode = Enum.MISACode.IsValid;
+                return _serviceResult;
+            }
+            else
+            {
+                return _serviceResult;
+            }
+        }
+
+        private bool Validate(T entity)
+        {
+            var mesArrayErro = new List<string>();
+            var isValidate = true;
+            //Đọc cả property
+            var properties = entity.GetType().GetProperties();
+
+            foreach (var property in properties)
+            {
+                var propertyValue = property.GetValue(entity);
+                var displayName = property.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                //Kiểm tra xem có attribute cần phải validate không:
+                if (property.IsDefined(typeof(Required), false))
+                {
+                    //check bắt buộc nhập
+                    if (propertyValue == null)
+                    {
+                        isValidate = false;
+                        mesArrayErro.Add($"Thông tin {displayName} không được phép để trống");
+                        _serviceResult.MISAcode = Enum.MISACode.NotValid;
+                        _serviceResult.Messenger = "Dữ liệu không hợp lệ";
+                    }
+                }
+                if (property.IsDefined(typeof(Duplicate), false))
+                {
+                    //check trùng dữ liệu
+                    var propertyName = property.Name;
+                    var entityDuplicate = _baseRepository.GetEntityBySpecs(propertyName, property.GetValue(entity));
+                    if (entityDuplicate != null)
+                    {
+                        isValidate = false;
+                        mesArrayErro.Add($"Thông tin {displayName} đã tồn tại");
+                        _serviceResult.MISAcode = Enum.MISACode.NotValid;
+                        _serviceResult.Messenger = "Dữ liệu không hợp lệ";
+                    }
+                }
+            }
+            _serviceResult.Data = mesArrayErro;
+            return isValidate;
         }
     }
 }

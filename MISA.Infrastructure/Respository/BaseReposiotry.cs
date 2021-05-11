@@ -15,8 +15,8 @@ namespace MISA.Infrastructure.Respository
     {
         IConfiguration _configuration;
         string _connectionString = string.Empty;
-        IDbConnection _dbConnection = null;
-        string _tableName;
+        protected IDbConnection _dbConnection = null;
+        protected string _tableName;
         public BaseReposiotry(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -26,9 +26,8 @@ namespace MISA.Infrastructure.Respository
         }
         public int Delete(Guid entityId)
         {
-
-            throw new NotImplementedException();
-
+            var res = _dbConnection.Execute($"Proc_Delete{_tableName}", new { CustomerGroupId = entityId }, commandType: CommandType.StoredProcedure);
+            return res;
         }
 
         public IEnumerable<T> Get()
@@ -39,7 +38,8 @@ namespace MISA.Infrastructure.Respository
 
         public T GetById(Guid entityId)
         {
-            throw new NotImplementedException();
+            var customerGroup = _dbConnection.Query<T>($"Proc_Get{_tableName}ById", new { CustomerGroupId = entityId }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return customerGroup;
         }
 
         public int Insert(T entity)
@@ -52,7 +52,10 @@ namespace MISA.Infrastructure.Respository
 
         public int Update(T entity)
         {
-            throw new NotImplementedException();
+            var parmeters = MappingDbType(entity);
+            var row = _dbConnection.Execute($"Proc_Update{_tableName}", parmeters, commandType: CommandType.StoredProcedure);
+
+            return row;
         }
 
         private DynamicParameters MappingDbType(T entity)
@@ -74,6 +77,13 @@ namespace MISA.Infrastructure.Respository
                 }
             }
             return parameters;
+        }
+
+        public T GetEntityBySpecs(string propertyName, object propertyValue)
+        {
+            var query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            var entity = _dbConnection.Query<T>(query, commandType: CommandType.Text).FirstOrDefault();
+            return entity;
         }
     }
 }
