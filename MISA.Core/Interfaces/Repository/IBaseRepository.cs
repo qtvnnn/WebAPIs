@@ -14,6 +14,6 @@ namespace MISA.Core.Interfaces.Repository
         int Insert(T entity);
         int Update(T entity);
         int Delete(Guid entityId);
-        T GetEntityBySpecs(string propertyName, object propertyValue);
+        T GetEntityBySpecs(T entity, PropertyInfo property);
     }
 }

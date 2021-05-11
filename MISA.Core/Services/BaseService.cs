@@ -58,7 +58,7 @@ namespace MISA.Core.Services
             var isValidate = Validate(entity);
             if (isValidate == true)
             {
-                _serviceResult.Data = _baseRepository.Insert(entity);
+                _serviceResult.Data = _baseRepository.Update(entity);
                 _serviceResult.MISAcode = Enum.MISACode.IsValid;
                 return _serviceResult;
             }
@@ -95,7 +95,7 @@ namespace MISA.Core.Services
                 {
                     //check trùng dữ liệu
                     var propertyName = property.Name;
-                    var entityDuplicate = _baseRepository.GetEntityBySpecs(propertyName, property.GetValue(entity));
+                    var entityDuplicate = _baseRepository.GetEntityBySpecs(entity, property);
                     if (entityDuplicate != null)
                     {
                         isValidate = false;

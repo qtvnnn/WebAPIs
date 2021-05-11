@@ -1,17 +1,20 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using MISA.Core.Entities;
+using MISA.Core.Enum;
 using MISA.Core.Interfaces.Repository;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MISA.Infrastructure.Respository
 {
-    public class BaseReposiotry<T> : IBaseRepository<T>
+    public class BaseReposiotry<T> : IBaseRepository<T> where T : BaseEntity
     {
         IConfiguration _configuration;
         string _connectionString = string.Empty;
@@ -71,6 +74,11 @@ namespace MISA.Infrastructure.Respository
                 {
                     parameters.Add($"@{propertyName}", propertyValue, DbType.String);
                 }
+                else if (propertyType == typeof(bool) || propertyValue == typeof(bool?))
+                {
+                    var dbValue = (bool)propertyValue == true ? 1 : 0;
+                    parameters.Add($"@{propertyName}", dbValue, DbType.Int32);
+                }
                 else
                 {
                     parameters.Add($"@{propertyName}", propertyValue);
@@ -79,11 +87,26 @@ namespace MISA.Infrastructure.Respository
             return parameters;
         }
 
-        public T GetEntityBySpecs(string propertyName, object propertyValue)
+        public T GetEntityBySpecs(T entity, PropertyInfo property)
         {
-            var query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
-            var entity = _dbConnection.Query<T>(query, commandType: CommandType.Text).FirstOrDefault();
-            return entity;
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.Insert)
+            {
+                query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            }
+            else if (entity.EntityState == EntityState.Update)
+            {
+                query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}' AND {_tableName}Id <> '{keyValue}'";
+            }
+            else
+            {
+                return null;
+            }
+            var entityReturn = _dbConnection.Query<T>(query, commandType: CommandType.Text).FirstOrDefault();
+            return entityReturn;
         }
     }
 }

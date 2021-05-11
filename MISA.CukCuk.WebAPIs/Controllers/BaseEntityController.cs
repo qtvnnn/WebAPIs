@@ -45,8 +45,22 @@ namespace MISA.CukCuk.WebAPIs.Controllers
 
         // PUT api/<CustomerGroup>/5
         [HttpPut("{id}")]
-        public IActionResult Put(T entity, Guid id)
+        public IActionResult Put([FromRoute] string id, [FromBody] T entity)
         {
+            var keyProperty = entity.GetType().GetProperty($"{typeof(T).Name}Id");
+            if (keyProperty.PropertyType == typeof(Guid))
+            {
+                keyProperty.SetValue(entity, Guid.Parse(id));
+            }
+            else if (keyProperty.PropertyType == typeof(int))
+            {
+                keyProperty.SetValue(entity, int.Parse(id));
+            }
+            else
+            {
+                keyProperty.SetValue(entity, id);
+            }
+
             var row = _baseService.Update(entity);
             return Ok(row);
         }

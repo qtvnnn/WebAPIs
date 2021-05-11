@@ -24,7 +24,7 @@ namespace MISA.Core.Entities
     }
     public class BaseEntity
     {
-        public EntityState EntityState { get; set; } = EntityState.AddNew;
+        public EntityState EntityState { get; set; } = EntityState.Insert;
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

@@ -25,7 +25,6 @@ namespace MISA.Core.Entities
         /// Mô tả
         /// </summary>
         /// 
-        [DisplayName("Mô tả")]
         public string Description { get; set; }
         public Guid? ParentId { get; set; }
     }
