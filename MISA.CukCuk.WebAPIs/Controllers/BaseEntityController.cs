@@ -39,8 +39,15 @@ namespace MISA.CukCuk.WebAPIs.Controllers
         [HttpPost]
         public IActionResult Post(T entity)
         {
-            var row = _baseService.Insert(entity);
-            return Ok(row);
+            var serviceResult = _baseService.Insert(entity);
+            if (serviceResult.MISAcode == MISACode.NotValid)
+            {
+                return BadRequest(serviceResult);
+            }
+            else
+            {
+                return Ok(serviceResult);
+            }
         }
 
         // PUT api/<CustomerGroup>/5
@@ -61,16 +68,31 @@ namespace MISA.CukCuk.WebAPIs.Controllers
                 keyProperty.SetValue(entity, id);
             }
 
-            var row = _baseService.Update(entity);
-            return Ok(row);
+            var serviceResult = _baseService.Update(entity);
+            if (serviceResult.MISAcode == MISACode.NotValid)
+            {
+                return BadRequest(serviceResult);
+            }
+            else
+            {
+                return Ok(serviceResult);
+            }
         }
 
         // DELETE api/<CustomerGroup>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            var res = _baseService.Delete(id);
-            return Ok(res);
+            var serviceResult = _baseService.Delete(id);
+            if (serviceResult.MISAcode == MISACode.NotValid)
+            {
+                return BadRequest(serviceResult);
+
+            }
+            else
+            {
+                return Ok(serviceResult);
+            }
         }
     }
 }

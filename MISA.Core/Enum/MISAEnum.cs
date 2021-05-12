@@ -21,6 +21,10 @@ namespace MISA.Core.Enum
         /// Thành công
         /// </summary>
         Success = 200,
+        /// <summary>
+        /// Exception
+        /// </summary>
+        Exception = 500
     }
     /// <summary>
     /// Xác định trạng thái Object Request

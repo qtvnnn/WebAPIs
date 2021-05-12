@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MISA.Infrastructure.Respository
 {
-    public class BaseReposiotry<T> : IBaseRepository<T> where T : BaseEntity
+    public class BaseReposiotry<T> : IBaseRepository<T>, IDisposable where T : BaseEntity
     {
         IConfiguration _configuration;
         string _connectionString = string.Empty;
@@ -29,7 +29,21 @@ namespace MISA.Infrastructure.Respository
         }
         public int Delete(Guid entityId)
         {
-            var res = _dbConnection.Execute($"Proc_Delete{_tableName}", new { CustomerGroupId = entityId }, commandType: CommandType.StoredProcedure);
+            var res = 0;
+            _dbConnection.Open();
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    res = _dbConnection.Execute($"Proc_Delete{_tableName}", new { CustomerGroupId = entityId }, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
+
+            }
             return res;
         }
 
@@ -47,17 +61,43 @@ namespace MISA.Infrastructure.Respository
 
         public int Insert(T entity)
         {
-            var parmeters = MappingDbType(entity);
-            var row = _dbConnection.Execute($"Proc_Insert{_tableName}", parmeters, commandType: CommandType.StoredProcedure);
-
+            var row = 0;
+            _dbConnection.Open();
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    var parmeters = MappingDbType(entity);
+                    row = _dbConnection.Execute($"Proc_Insert{_tableName}", parmeters, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                    //transaction.Rollback();
+                }
+            }
             return row;
         }
 
         public int Update(T entity)
         {
-            var parmeters = MappingDbType(entity);
-            var row = _dbConnection.Execute($"Proc_Update{_tableName}", parmeters, commandType: CommandType.StoredProcedure);
 
+            var row = 0;
+            _dbConnection.Open();
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    var parmeters = MappingDbType(entity);
+                    row = _dbConnection.Execute($"Proc_Update{_tableName}", parmeters, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
+            }
             return row;
         }
 
@@ -107,6 +147,14 @@ namespace MISA.Infrastructure.Respository
             }
             var entityReturn = _dbConnection.Query<T>(query, commandType: CommandType.Text).FirstOrDefault();
             return entityReturn;
+        }
+
+        public void Dispose()
+        {
+            if (_dbConnection.State == ConnectionState.Open)
+            {
+                _dbConnection.Close();
+            }
         }
     }
 }

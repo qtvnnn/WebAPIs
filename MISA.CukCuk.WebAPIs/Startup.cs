@@ -12,8 +12,11 @@ using MISA.Core.Interfaces.Repository;
 using MISA.Core.Interfaces.Service;
 using MISA.Core.Interfaces.Service.Respository;
 using MISA.Core.Services;
+using MISA.CukCuk.WebAPIs.Middleware;
 using MISA.Infrastructure;
 using MISA.Infrastructure.Respository;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +36,13 @@ namespace MISA.CukCuk.WebAPIs
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
+            services.AddCors();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.CukCuk.WebAPIs", Version = "v1" });
@@ -55,11 +63,11 @@ namespace MISA.CukCuk.WebAPIs
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MISA.CukCuk.WebAPIs v1"));
             }
-
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(option => option.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

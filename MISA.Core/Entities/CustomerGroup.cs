@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +24,7 @@ namespace MISA.Core.Entities
         /// Mô tả
         /// </summary>
         /// 
+        [DisplayName("Mô tả")]
         public string Description { get; set; }
         public Guid? ParentId { get; set; }
     }

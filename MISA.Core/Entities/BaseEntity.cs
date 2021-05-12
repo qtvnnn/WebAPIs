@@ -22,6 +22,16 @@ namespace MISA.Core.Entities
     {
 
     }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class DisplayName : Attribute
+    {
+        public string Name { get; set; }
+        public DisplayName(string name = null)
+        {
+            this.Name = name;
+        }
+    }
     public class BaseEntity
     {
         public EntityState EntityState { get; set; } = EntityState.Insert;
